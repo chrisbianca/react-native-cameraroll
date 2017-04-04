@@ -3,15 +3,16 @@ import { NativeModules } from 'react-native';
 
 const RNCameraRollModule = NativeModules.RNCameraRoll;
 
-type AssetType = "image" | "video" | "all";
+export type AssetRequestType = "image" | "video" | "all";
+export type AssetType = "image" | "video";
 
-type GetAssetsParams = {
-  assetType?: AssetType;
+export type GetAssetsParams = {
+  assetType?: AssetRequestType;
   first: number;
   start?: string | number;
 }
 
-type Location = {
+export type Location = {
   altitude?: number;
   heading?: number;
   latitude: number;
@@ -19,7 +20,7 @@ type Location = {
   speed?: number;
 }
 
-type Asset = {
+export type Asset = {
   filename: string;
   height: number;
   location: Location;
@@ -29,13 +30,13 @@ type Asset = {
   width: number;
 }
 
-type PageInfo = {
+export type PageInfo = {
   end_cursor: string | number;
   has_next_page: boolean;
   start_cursor: string | number;
 }
 
-type GetAssetsResponse = {
+export type GetAssetsResponse = {
   assets: Array<Asset>;
   page_info: PageInfo;
 }
