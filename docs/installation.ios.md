@@ -1,6 +1,6 @@
 # iOS Installation
 
-There are multiple ways to install RNFirebase dependent on how your project is currently setup:
+There are multiple ways to install RNCameraRoll dependent on how your project is currently setup:
 
 ### 1) Existing Cocoapods setup, including React Native as a pod
 Simply add the following to your `Podfile`:
