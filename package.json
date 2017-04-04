@@ -4,6 +4,7 @@
   "description": "A replacement camera roll module for React Native",
   "main": "index.js",
   "scripts": {
+    "flow": "flow",
     "lint": "eslint ./src"
   },
   "repository": {
@@ -41,13 +42,13 @@
     "babel-preset-react-native": "^1.9.0",
     "debug": "^2.2.0",
     "enzyme": "^2.4.1",
-    "eslint": "^3.8.1",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-flowtype": "^2.20.0",
-    "eslint-plugin-import": "^2.0.1",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1",
-    "flow-bin": "^0.35.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "flow-bin": "^0.40.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-native": "^0.42.0"
