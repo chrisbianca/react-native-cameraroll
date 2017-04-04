@@ -102,7 +102,7 @@ public class RNCameraRollModule extends ReactContextBaseJavaModule {
                 queryArgs.add(mStart);
             }
             Uri uri;
-            if (mAssetType == null || "All".equals(mAssetType)) {
+            if (mAssetType == null || "all".equals(mAssetType)) {
                 uri = MediaStore.Files.getContentUri("external");
                 query.append(" AND (" + Images.Media.MIME_TYPE + " LIKE ? OR "
                         + Images.Media.MIME_TYPE + " LIKE ?) ");
