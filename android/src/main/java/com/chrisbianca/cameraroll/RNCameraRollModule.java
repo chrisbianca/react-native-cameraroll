@@ -60,13 +60,13 @@ public class RNCameraRollModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getAssets(final ReadableMap params, final Promise promise) {
         String start = params.hasKey("start") ? params.getString("start") : null;
-        int first = params.getInt("first");
+        int limit = params.getInt("limit");
         String assetType = params.getString("assetType");
 
         new GetAssetsTask(
                 getReactApplicationContext(),
                 start,
-                first,
+                limit,
                 assetType,
                 promise)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -75,20 +75,20 @@ public class RNCameraRollModule extends ReactContextBaseJavaModule {
     private static class GetAssetsTask extends GuardedAsyncTask<Void, Void> {
         private final Context mContext;
         private final @Nullable String mStart;
-        private final int mFirst;
+        private final int mLimit;
         private final @Nullable String mAssetType;
         private final Promise mPromise;
 
         private GetAssetsTask(
                 ReactContext context,
                 @Nullable String start,
-                int first,
+                int limit,
                 @Nullable String assetType,
                 Promise promise) {
             super(context);
             mContext = context;
             mStart = start;
-            mFirst = first;
+            mLimit = limit;
             mAssetType = assetType;
             mPromise = promise;
         }
@@ -129,13 +129,13 @@ public class RNCameraRollModule extends ReactContextBaseJavaModule {
                         query.toString(),
                         queryArgs.toArray(new String[queryArgs.size()]),
                         Images.Media.DATE_TAKEN + " DESC, " + Images.Media.DATE_MODIFIED +
-                            " DESC LIMIT " + (mFirst + 1));
+                            " DESC LIMIT " + (mLimit + 1));
                 if (assetsCursor == null) {
                     mPromise.reject(ERROR_UNABLE_TO_LOAD, "Could not get assets");
                 } else {
                     try {
-                        response.putArray("assets", buildAssets(assetsCursor, response, mFirst));
-                        response.putMap("page_info", buildPageInfo(assetsCursor, response, mFirst));
+                        response.putArray("assets", buildAssets(assetsCursor, response, mLimit));
+                        response.putMap("page_info", buildPageInfo(assetsCursor, response, mLimit));
                     } finally {
                         assetsCursor.close();
                         mPromise.resolve(response);

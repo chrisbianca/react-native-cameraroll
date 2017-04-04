@@ -25,7 +25,7 @@ npm i react-native-cameraroll --save
 Retrieve image and/or video assets from the device's Camera Roll.
 
 ```javascript
-RNCameraRoll.getAssets({ first: 20 })
+RNCameraRoll.getAssets({ assetType: 'image', limit: 20 })
   .then(response => console.log(response))
   .catch(err => console.error(err));
 ```
@@ -33,9 +33,9 @@ RNCameraRoll.getAssets({ first: 20 })
 `params` takes the following shape:
 ```
 {
-  assetType?: 'image' | 'video' | 'all';
-  first: number; // The number of assets to return
-  start?: string | number; // The start cursor (returned from a previous request)
+  assetType: 'image' | 'video' | 'all';
+  limit: number; // How many assets to return
+  start?: string | number; // The start cursor (use end_cursor from previous request)
 }
 ```
 

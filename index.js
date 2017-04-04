@@ -7,8 +7,8 @@ export type AssetRequestType = "image" | "video" | "all";
 export type AssetType = "image" | "video";
 
 export type GetAssetsParams = {
-  assetType?: AssetRequestType;
-  first: number;
+  assetType: AssetRequestType;
+  limit: number;
   start?: string | number;
 }
 

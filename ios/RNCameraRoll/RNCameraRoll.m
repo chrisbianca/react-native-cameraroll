@@ -51,7 +51,7 @@ RCT_EXPORT_METHOD(getAssets:(NSDictionary *)params
              reject:(RCTPromiseRejectBlock)reject
 {
   NSUInteger startParam = [RCTConvert NSInteger:params[@"start"]];
-  NSUInteger firstParam = [RCTConvert NSInteger:params[@"first"]];
+  NSUInteger limitParam = [RCTConvert NSInteger:params[@"limit"]];
   NSString *assetTypeParam = [RCTConvert NSString:params[@"assetType"]];
 
   PHAssetMediaType assetType;
@@ -71,7 +71,7 @@ RCT_EXPORT_METHOD(getAssets:(NSDictionary *)params
   PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:assetType options:allPhotosOptions];
 
   NSInteger startIndex = startParam ? startParam : 0;
-  NSInteger length = !firstParam || startIndex + firstParam > allPhotosResult.count ? allPhotosResult.count - startIndex : firstParam;
+  NSInteger length = !limitParam || startIndex + limitParam > allPhotosResult.count ? allPhotosResult.count - startIndex : limitParam;
   NSMutableArray<NSDictionary<NSString *, id> *> *assets = [NSMutableArray new];
 
   [allPhotosResult enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, length)]
