@@ -104,24 +104,18 @@ public class RNCameraRollModule extends ReactContextBaseJavaModule {
             Uri uri;
             if (mAssetType == null || "All".equals(mAssetType)) {
                 uri = MediaStore.Files.getContentUri("external");
-                if (mMimeTypes == null || mMimeTypes.size() == 0) {
-                    query.append(" AND (" + Images.Media.MIME_TYPE + " LIKE ? OR "
-                            + Images.Media.MIME_TYPE + " LIKE ?) ");
-                    queryArgs.add("image/%");
-                    queryArgs.add("video/%");
-                }
+                query.append(" AND (" + Images.Media.MIME_TYPE + " LIKE ? OR "
+                        + Images.Media.MIME_TYPE + " LIKE ?) ");
+                queryArgs.add("image/%");
+                queryArgs.add("video/%");
             } else if ("image".equals(mAssetType)) {
                 uri = Images.Media.EXTERNAL_CONTENT_URI;
-                if (mMimeTypes == null || mMimeTypes.size() == 0) {
-                    query.append(" AND " + Images.Media.MIME_TYPE + " LIKE ? ");
-                    queryArgs.add("image/%");
-                }
+                query.append(" AND " + Images.Media.MIME_TYPE + " LIKE ? ");
+                queryArgs.add("image/%");
             } else if ("video".equals(mAssetType)) {
                 uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                if (mMimeTypes == null || mMimeTypes.size() == 0) {
-                    query.append(" AND " + Images.Media.MIME_TYPE + " LIKE ? ");
-                    queryArgs.add("video/%");
-                }
+                query.append(" AND " + Images.Media.MIME_TYPE + " LIKE ? ");
+                queryArgs.add("video/%");
             } else {
                 mPromise.reject(ERROR_INVALID_ASSET_TYPE, "Invalid assetType: " + mAssetType);
                 return;
@@ -167,7 +161,7 @@ public class RNCameraRollModule extends ReactContextBaseJavaModule {
         return pageInfo;
     }
 
-    private static WritableArray void buildAssets(Cursor assetsCursor, WritableMap response,
+    private static WritableArray buildAssets(Cursor assetsCursor, WritableMap response,
         int limit) {
         assetsCursor.moveToFirst();
         int idIndex = assetsCursor.getColumnIndex(Images.Media._ID);

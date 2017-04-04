@@ -2,12 +2,13 @@ require 'json'
 package = JSON.parse(File.read('package.json'))
 
 Pod::Spec.new do |s|
-  s.name                = "react-native-cameraroll"
+  s.name                = "RNCameraRoll"
   s.version             = package["version"]
   s.summary             = package["description"]
   s.description         = <<-DESC
                             An improved camera roll module for React Native
                           DESC
+  s.homepage            = "https://github.com/chrisbianca/react-native-cameraroll"
   s.license             = package['license']
   s.author              = "Chris Bianca"
   s.source              = { :git => "https://github.com/chrisbianca/react-native-cameraroll.git", :tag => "v#{s.version}" }
