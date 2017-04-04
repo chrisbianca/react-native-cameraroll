@@ -1,0 +1,48 @@
+// START - required to allow working on this project inside Android Studio
+// YES, jcenter is required twice - it somehow tricks studio into compiling deps below
+// doesn't break anything anywhere else and projects using this lib work as normal
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.3'
+    }
+}
+// END
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled  true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+// START - required to allow working on this project inside Android Studio
+// YES, jcenter is required twice - it somehow tricks studio into compiling deps below
+// doesn't break anything anywhere else and projects using this lib work as normal
+// you'll now have code completion/validation and all the other AS goodies.
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+// END
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.facebook.react:react-native:+'
+}
